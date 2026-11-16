@@ -1,0 +1,1374 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local private student answer row",
+  "$comment": "Structural contract only. validate_pair_export and _student_snapshot additionally require canonical complete path/derived fields, exact bound hashes, unique reads/session-item pairs, coherent flags and time ordering. No extra companion metadata belongs on answer rows.",
+  "type": "object",
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "pattern": "^v2-pair-[0-9]+$"
+    },
+    "read_id": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        }
+      ]
+    },
+    "instrument_version": {
+      "const": "2.0"
+    },
+    "pipeline_version": {
+      "const": "2.0"
+    },
+    "path": {
+      "type": "object",
+      "properties": {
+        "q1": {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time",
+                          "wrong_direction",
+                          "wrong_exposure_outcome",
+                          "planned_as_observed"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "groups": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "sample_size": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "comparison": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "analysis": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "significance": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "context": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "result",
+                "groups",
+                "sample_size",
+                "comparison",
+                "analysis",
+                "significance",
+                "context"
+              ],
+              "additionalProperties": false
+            },
+            "b": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time",
+                          "wrong_direction",
+                          "wrong_exposure_outcome",
+                          "planned_as_observed"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "groups": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "sample_size": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "comparison": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "analysis": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "significance": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                },
+                "context": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "enum": [
+                        "yes",
+                        "no",
+                        "cannot_tell"
+                      ]
+                    },
+                    "problems": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "wrong_value",
+                          "not_supported_by_abstract",
+                          "missing_from_extraction",
+                          "wrong_group_time"
+                        ]
+                      },
+                      "uniqueItems": true
+                    }
+                  },
+                  "required": [
+                    "answer",
+                    "problems"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "result",
+                "groups",
+                "sample_size",
+                "comparison",
+                "analysis",
+                "significance",
+                "context"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ],
+          "additionalProperties": false
+        },
+        "q1_relevance": {
+          "type": "string",
+          "enum": [
+            "material",
+            "not_material",
+            "cannot_establish_comparison"
+          ]
+        },
+        "q2": {
+          "type": "object",
+          "properties": {
+            "exposure": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "enum": [
+                    "different_exposure",
+                    "molecule_class"
+                  ]
+                },
+                "detail": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "answer"
+              ],
+              "additionalProperties": false
+            },
+            "outcome": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "enum": [
+                    "outcome_definition"
+                  ]
+                },
+                "detail": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "answer"
+              ],
+              "additionalProperties": false
+            },
+            "comparison": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "enum": [
+                    "population",
+                    "region",
+                    "disease_subtype",
+                    "design",
+                    "comparator",
+                    "molecule_class",
+                    "dose",
+                    "duration",
+                    "outcome_definition",
+                    "biological_sample",
+                    "statistical_analysis",
+                    "sample_size",
+                    "other",
+                    "missing_context",
+                    "cannot_determine"
+                  ]
+                },
+                "detail": {
+                  "type": "string",
+                  "maxLength": 200
+                }
+              },
+              "required": [
+                "answer"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "exposure",
+            "outcome",
+            "comparison"
+          ],
+          "additionalProperties": false
+        },
+        "q2_primary": {
+          "type": "string",
+          "enum": [
+            "exposure",
+            "outcome",
+            "comparison"
+          ]
+        },
+        "q3": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "cannot_tell"
+          ]
+        },
+        "q4": {
+          "type": "string",
+          "enum": [
+            "effect_vs_no_effect",
+            "opposite",
+            "size_only",
+            "insufficient"
+          ]
+        },
+        "q5": {
+          "type": "object",
+          "properties": {
+            "answer": {
+              "type": "string",
+              "enum": [
+                "yes",
+                "no",
+                "cannot_tell"
+              ]
+            },
+            "factor": {
+              "type": "string",
+              "enum": [
+                "population",
+                "region",
+                "disease_subtype",
+                "design",
+                "comparator",
+                "molecule_class",
+                "dose",
+                "duration",
+                "outcome_definition",
+                "biological_sample",
+                "statistical_analysis",
+                "sample_size",
+                "other",
+                "missing_context",
+                "cannot_determine"
+              ]
+            },
+            "detail": {
+              "type": "string",
+              "maxLength": 200
+            }
+          },
+          "required": [
+            "answer"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "q1"
+      ],
+      "additionalProperties": false
+    },
+    "field_problems": {
+      "type": "object",
+      "properties": {
+        "a": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time",
+                      "wrong_direction",
+                      "wrong_exposure_outcome",
+                      "planned_as_observed"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "groups": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "sample_size": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "comparison": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "analysis": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "significance": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "context": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "b": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time",
+                      "wrong_direction",
+                      "wrong_exposure_outcome",
+                      "planned_as_observed"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "groups": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "sample_size": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "comparison": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "analysis": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "significance": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            },
+            "context": {
+              "type": "object",
+              "properties": {
+                "answer": {
+                  "type": "string",
+                  "enum": [
+                    "yes",
+                    "no",
+                    "cannot_tell"
+                  ]
+                },
+                "problems": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "wrong_value",
+                      "not_supported_by_abstract",
+                      "missing_from_extraction",
+                      "wrong_group_time"
+                    ]
+                  },
+                  "uniqueItems": true
+                }
+              },
+              "required": [
+                "answer",
+                "problems"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "a",
+        "b"
+      ],
+      "additionalProperties": false
+    },
+    "relevance": {
+      "enum": [
+        "not_needed",
+        "material",
+        "not_material",
+        "cannot_establish_comparison"
+      ]
+    },
+    "other_detail": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "binary_inconsistent": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "session_pseudonym": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "label": {
+      "enum": [
+        "concordant",
+        "not_comparable",
+        "extraction_error",
+        "not_replicated",
+        "apparent_contradiction",
+        "contradictory"
+      ]
+    },
+    "factor": {
+      "enum": [
+        "none",
+        "unknown",
+        "population",
+        "region",
+        "disease_subtype",
+        "design",
+        "comparator",
+        "molecule_class",
+        "dose",
+        "duration",
+        "outcome_definition",
+        "sample",
+        "other"
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "maxLength": 1500
+    },
+    "time_on_item_seconds": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 86400
+    },
+    "submitted_at_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+    },
+    "assigned_at_utc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+    },
+    "paid": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "replacement": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "surplus": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "excluded": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "quality_failed": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "counted": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "preview": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "const": 0
+        },
+        {
+          "type": "boolean",
+          "const": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "item_id",
+    "read_id",
+    "instrument_version",
+    "pipeline_version",
+    "path",
+    "field_problems",
+    "relevance",
+    "other_detail",
+    "binary_inconsistent",
+    "package_sha256",
+    "config_sha256",
+    "session_pseudonym",
+    "label",
+    "factor",
+    "rationale",
+    "time_on_item_seconds",
+    "submitted_at_utc",
+    "assigned_at_utc",
+    "paid",
+    "replacement",
+    "surplus",
+    "excluded",
+    "quality_failed",
+    "counted",
+    "preview"
+  ],
+  "additionalProperties": false
+}

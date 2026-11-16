@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Participant correction exported next to a student answer (never replacing it)",
+  "type": "object",
+  "properties": {
+    "audit_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "recorded_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_pseudonym": {
+      "type": "string",
+      "minLength": 1
+    },
+    "read_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "item_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "corrected_path": {
+      "type": "object"
+    },
+    "corrected_rationale": {
+      "type": "string",
+      "maxLength": 1500
+    },
+    "derived_old": {
+      "$ref": "#/$defs/derived"
+    },
+    "derived_new": {
+      "$ref": "#/$defs/derived"
+    },
+    "changes": {
+      "type": "object"
+    },
+    "source": {
+      "type": "string"
+    },
+    "disclosure": {
+      "type": "string"
+    },
+    "recorded_by": {
+      "type": "string"
+    },
+    "derived_with": {},
+    "applied": {
+      "type": "boolean"
+    },
+    "supersedes_audit_id": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "changes_relative_to": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "audit_id",
+    "recorded_at_utc",
+    "session_pseudonym",
+    "read_id",
+    "item_id",
+    "corrected_path",
+    "corrected_rationale",
+    "derived_old",
+    "derived_new",
+    "changes",
+    "source",
+    "disclosure",
+    "recorded_by",
+    "derived_with",
+    "applied",
+    "supersedes_audit_id",
+    "changes_relative_to"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "derived": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "string"
+        },
+        "binary_inconsistent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "label",
+        "factor",
+        "binary_inconsistent"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

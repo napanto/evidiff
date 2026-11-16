@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="landing">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="dot"></span> {{ t('tagline') }}</p>
+    <h1>{{ t('hero') }}</h1>
+    <p class="lead">{{ t('intro') }}</p>
+    <section class="study-meter" aria-labelledby="study-meter-label">
+      <div class="study-meter-head">
+        <strong id="study-meter-label">{{ t('study_percent',percent=study.percent) }}</strong>
+        <span>{{ t('study_early') if study.percent < 10 else (t('study_almost') if study.percent >= 80 else t('study_help')) }}</span>
+      </div>
+      <progress class="study-meter-bar" max="100" value="{{ study.percent }}" aria-labelledby="study-meter-label">{{ study.percent }}%</progress>
+    </section>
+    {% if cfg.COMPENSATION_ENABLED %}
+    <div class="pay-callout">
+      {% if cfg.PREVIEW_MODE %}<p class="fine">{{ t('preview_rate_header') }}</p>{% endif %}
+      <strong>{{ t('payline', price=money(pay.rate_cents), minimum=cfg.MIN_PAYOUT_PAIRS) }}</strong>
+      {% if pay.amended %}{% if cfg.PRACTICE_ENABLED %}<p>{{ t('pay_practice_price', practice=money(pay.practice_cents)) }}</p>{% endif %}{% else %}<p>{{ t('pay_threshold_amount', amount=money(cfg.MIN_PAYOUT_PAIRS * cfg.PRICE_PER_PAIR_CENTS + (cfg.FIXED_FEE_CENTS if cfg.MIN_PAYOUT_PAIRS >= cfg.FIXED_FEE_MIN_PAIRS else 0))) }}</p>{% endif %}
+      {% if cfg.FIXED_FEE_CENTS %}<p>{{ t('fee_rule', fee=money(cfg.FIXED_FEE_CENTS), minimum=cfg.FIXED_FEE_MIN_PAIRS) }}</p>{% endif %}
+    </div>
+    {% endif %}
+    {% if cfg.PRACTICE_ENABLED %}<p>{{ t('enabled_practice') }}</p>{% endif %}
+    {% if cfg.TUTORIAL_ENABLED %}<p>{{ t('enabled_tutorial') }}</p>{% endif %}
+    {% if cfg.QUALIFICATION_ENABLED %}<p>{{ t('enabled_qualification', pass_count=cfg.QUALIFICATION_PASS) }}</p>{% endif %}
+    {% if person %}
+    <p><a class="primary large button" href="{{ link('work') }}">{{ 'Torna al lavoro' if lang=='it' else 'Back to your task' }} <span>→</span></a></p>
+    {% elif not closed %}
+    <form method="post" action="{{ link('start') }}">
+      <input type="hidden" name="_form" value="{{ token('start') }}">
+      <button class="primary large">{{ t('start') }} <span>↗</span></button>
+      <p class="fine">{{ t('read_rules') }} <a href="{{ link('privacy') }}">{{ t('privacy') }} ↗</a></p>
+    </form>
+    {% endif %}
+  </div>
+  <aside class="landing-aside">
+    <div class="study-visual" aria-hidden="true">
+      <div class="visual-top">01 <span>ABSTRACT A</span><i></i></div>
+      <div class="visual-lines"><b></b><b></b><b></b><b></b></div>
+      <div class="visual-divider">↕</div>
+      <div class="visual-top">02 <span>ABSTRACT B</span><i></i></div>
+      <div class="visual-lines second"><b></b><b></b><b></b></div>
+      <p>{{ 'LEGGI. CONFRONTA. CONTRIBUISCI.' if lang=='it' else 'READ. COMPARE. CONTRIBUTE.' }}</p>
+    </div>
+    <section class="eligibility">
+      <h2>{{ t('eligible') }}</h2>
+      <ul>{% for key, programme in programmes.items() %}<li>{{ programme[lang] }}</li>{% endfor %}</ul>
+      <p class="fine">{{ t('eligibility_note') }}</p>
+      <p class="fine">{{ t('excluded_programmes') }}</p>
+    </section>
+  </aside>
+</section>
+<div class="landing-bottom">
+  <div>
+    <p>{{ t('limited') }}</p>
+    <p>{{ t('voluntary') }} <a href="{{ link('privacy') }}">{{ t('privacy') }} ↗</a></p>
+  </div>
+  {% if not person %}<details class="resume-card"{% if error %} open{% endif %}>
+    <summary>{{ t('resume_title') }} <span>↗</span></summary>
+    <p>{{ t('resume_help') }}</p>
+    {% if error %}<p role="alert">{{ t(error) }}</p>{% endif %}
+    <form method="post" action="{{ link('resume') }}">
+      <input type="hidden" name="_form" value="{{ token('resume') }}">
+      <label for="resume-code">{{ t('code') }}</label>
+      <input id="resume-code" name="code" autocomplete="off" placeholder="XXXX-XXXX" maxlength="12" required>
+      <button class="secondary">{{ t('resume') }}</button>
+    </form>
+  </details>{% endif %}
+</div>
+{% endblock %}

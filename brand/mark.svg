@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: AGPL-3.0-only -->
+<!-- evidiff mark: two findings (circles) and the part they share (the lens).
+     Pure geometry, no fonts. Rendered by scripts/make_brand_assets.py. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="#17684e"/>
+  <circle cx="206" cy="256" r="118" fill="#f8f9f6"/>
+  <circle cx="306" cy="256" r="118" fill="#f2c14e"/>
+  <!-- Intersection of the two circles: centres 100 apart, radius 118,
+       chord at x=256 from y=256-106.88 to y=256+106.88. -->
+  <path d="M 256 149.12 A 118 118 0 0 1 256 362.88 A 118 118 0 0 1 256 149.12 Z" fill="#0f4a37"/>
+</svg>

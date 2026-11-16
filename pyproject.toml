@@ -1,0 +1,25 @@
+[project]
+name = "evidiff"
+version = "0.1.0"
+description = "Collect human judgements on pairs of claims extracted from scientific abstracts"
+requires-python = ">=3.11"
+license = "AGPL-3.0-only"
+readme = "README.md"
+dependencies = [
+    "flask>=3.1,<4",
+    "gunicorn>=23,<24",
+    "jsonschema>=4.23,<5",
+    "markdown>=3.7,<4",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.9"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "--basetemp=.local/pytest"
+markers = ["unpaid: run the test on an instance with COMPENSATION_ENABLED=false"]

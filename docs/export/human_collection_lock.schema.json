@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Signed local collection lock before first real read",
+  "$comment": "Schema does not prove deployment, signatures or hashes. Actual snapshot uses site canonical JSON: sort_keys=True, separators=(comma,colon), default ensure_ascii=True. Companion must be signed and all assignments occur after locked_at.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "locked"
+    },
+    "evaluation_config_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "configuration_snapshot": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "Actual nonsecret deployed site configuration; recursively reject secret/password/token/api_key key names."
+    },
+    "site_configuration_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "locked_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+    },
+    "frozen_before_first_real_student_read": {
+      "const": true
+    },
+    "deployment_confirmed_by": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "scientific_rules_match_registered_protocol": {
+      "const": true
+    },
+    "reference_revision_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "status",
+    "evaluation_config_sha256",
+    "configuration_snapshot",
+    "site_configuration_sha256",
+    "locked_at",
+    "frozen_before_first_real_student_read",
+    "deployment_confirmed_by",
+    "scientific_rules_match_registered_protocol",
+    "reference_revision_sha256"
+  ],
+  "additionalProperties": false
+}

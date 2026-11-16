@@ -1,0 +1,59 @@
+{% macro source(article, view, side, evidence, prefix='') -%}
+<div class="phone-source step-source" data-source-side="{{ side }}">
+  <p class="source-caption"><span class="abstract-badge" data-side="{{ side }}">{{ side|upper }}</span> {{ 'Nell’abstract' if lang=='it' else 'In the abstract' }}</p>
+  <p class="evidence-legend">{{ 'Evidenziate: le frasi indicate dal sistema' if lang=='it' else 'Highlighted: the sentences the system points to' }}</p>
+  {% if not evidence %}<p class="no-evidence">{{ 'Nessuna frase indicata: controlla tutto l’abstract.' if lang=='it' else 'No sentence indicated: check the whole abstract.' }}</p>{% endif %}
+  <div class="source-excerpt abstract-text" lang="en">{% for sentence in article.sentences if sentence.id in evidence %}<span class="sentence evidence active-evidence" data-sentence-id="{{ sentence.id }}"><sup>{{ sentence.id }}</sup> {{ sentence.text }} </span>{% endfor %}</div>
+  <details class="full-abstract" data-side="{{ side }}">
+    <summary><span class="show-abstract-label">{{ 'Mostra tutto l’abstract' if lang=='it' else 'Show the whole abstract' }} {{ side|upper }}</span><span class="hide-abstract-label">{{ 'Nascondi l’abstract completo' if lang=='it' else 'Hide the full abstract' }} {{ side|upper }}</span></summary>
+    <h3 class="article-title" lang="en">{{ article.title }}</h3>
+    <p class="article-meta">{% if article.year %}{{ article.year }} · {% endif %}{% if article.pmid %}<a href="https://pubmed.ncbi.nlm.nih.gov/{{ article.pmid }}/" target="_blank" rel="noopener noreferrer">PubMed ↗</a>{% else %}{{ t('synthetic_example') }}{% endif %}</p>
+    <div class="abstract-text" lang="en">{% for sentence in article.sentences %}<span class="sentence{% if sentence.id in view.evidence %} evidence{% endif %}{% if sentence.id in evidence %} active-evidence{% endif %}" data-sentence-id="{{ sentence.id }}"><sup>{{ sentence.id }}</sup> {{ sentence.text }} </span>{% endfor %}</div>
+  </details>
+</div>
+{%- endmacro %}
+
+{% macro value(row) -%}
+{% if not row %}<span class="missing-value">{{ 'Non estratto' if lang=='it' else 'Not extracted' }}</span>{% else %}
+{% if row.missing %}<span class="missing-value">{{ row.value }}</span>{% else %}{% if row.quoted %}“{{ row.value }}”{% else %}{{ row.value }}{% endif %}{% endif %}{% if row.suffix %} {{ row.suffix }}{% endif %}
+{% if row.reported %}<small class="reported-text">{{ 'Nel testo:' if lang=='it' else 'In the text:' }} “{{ row.reported }}”</small>{% endif %}
+{% if row.target %}<small class="field-target">{{ 'Si riferisce a:' if lang=='it' else 'Refers to:' }} {{ row.target }}</small>{% endif %}
+{% endif %}
+{%- endmacro %}
+
+{% macro fields(section) -%}
+{% if section.sentence %}<p class="claim-sentence">{{ section.sentence }}</p>{% endif %}
+{% if section.intro %}<p class="field-intro">{{ section.intro }}</p>{% endif %}
+{#- Rows of one group (e.g. the group studied) form their own panel; other rows stay in a plain list. -#}
+{% set ns = namespace(member=none) %}
+{% for row in section.rows %}
+  {% set member = row.member|default(none) %}
+  {% if loop.first or member != ns.member %}
+    {% if not loop.first %}</dl>{% if ns.member %}</section>{% endif %}{% endif %}
+    {% if member %}<section class="field-group" aria-label="{{ row.group }}"><h4 class="field-group-heading">{{ row.group }}</h4>{% endif %}
+    <dl class="field-values">
+    {% set ns.member = member %}
+  {% endif %}
+  <div class="field-value" data-field-key="{{ row.key|default('') }}"><dt>{{ row.label }}</dt><dd{% if row.raw %} title="{{ row.raw }}"{% endif %}>{{ value(row) }}</dd></div>
+  {% if loop.last %}</dl>{% if ns.member %}</section>{% endif %}{% endif %}
+{% endfor %}
+{% if section.note %}<p class="field-note">{{ section.note }}</p>{% endif %}
+{%- endmacro %}
+
+{% macro help(title, text, example, absence=false) -%}
+<details class="check-help"><summary aria-label="{{ ui.help_label }}: {{ title }}" title="{{ ui.help_label }}">?</summary><div class="help-content"><p>{{ text }}</p>{% if absence %}<p>{{ ui.q1_absence }}</p><p>{{ ui.missing_help }}</p>{% endif %}<p class="help-example"><strong>{{ ui.example_label }}:</strong> {{ example }}</p></div></details>
+{%- endmacro %}
+
+{% macro options(name, block, values) -%}
+<div class="instrument-options">{% for value,text in values %}<label class="instrument-option"><input type="radio" name="{{ name }}" value="{{ value }}" data-block="{{ block }}"><span>{{ text }}</span></label>{% if caller is defined %}{{ caller(value) }}{% endif %}{% endfor %}</div>
+{%- endmacro %}
+
+{% macro factor_select(name, block) -%}
+<select name="{{ name }}" data-block="{{ block }}"><option value="">{{ ui.select }}</option>{% for value,text in ui.factors %}<option value="{{ value }}">{{ text }}</option>{% endfor %}</select>
+{%- endmacro %}
+
+{% macro heading(keyword, question, how, help_text, example, absence=false) -%}
+<div class="question-title"><p class="question-keyword">{{ keyword }}</p><h2 class="question-heading" tabindex="-1">{{ question }}</h2>{{ help(question,help_text,example,absence) }}</div>
+<p class="how-line">{{ how }}{% if absence %} <span>{{ ui.missing_line }}</span>{% endif %}</p>
+<p class="step-error" role="alert" tabindex="-1" hidden></p>
+{%- endmacro %}

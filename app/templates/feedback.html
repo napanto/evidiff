@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% set task_header = true %}
+{% block body_class %}task-feedback-page{% endblock %}
+{% block content %}
+<section class="practice-feedback">
+  <h1>{{ t('passed') if qualification and passed else t('qualification_feedback') if qualification else t('feedback') }}</h1>
+  {% for result in results %}{% set item=synthetic[result.item_id] %}
+  <article class="feedback-card">
+    {% if qualification %}<h2>{{ loop.index }} · {{ item.a.article.title }}</h2>{% endif %}
+    <p>{{ feedback_explanation(item.explanation[lang]) }}</p>
+    {% for stage in feedback_view(result.path,item.expected_path,lang) %}
+    <section class="feedback-stage"><h2>{{ stage.title }}</h2>
+      <table class="feedback-path-table"><thead><tr><th scope="col">{{ 'Domanda' if lang=='it' else 'Question' }}</th><th scope="col">{{ 'La tua risposta' if lang=='it' else 'Your answer' }}</th><th scope="col">{{ 'Risposta attesa' if lang=='it' else 'Expected answer' }}</th></tr></thead><tbody>
+      {% for row in stage.rows %}<tr{% if row.different %} class="path-different"{% endif %}><th scope="row">{{ row.label }}{% if row.different %}<span class="difference-marker" title="{{ 'Risposte diverse' if lang=='it' else 'Answers differ' }}"> ≠<span class="visually-hidden"> {{ 'Risposte diverse' if lang=='it' else 'Answers differ' }}</span></span>{% endif %}</th><td class="feedback-actual"><span class="feedback-cell-label" aria-hidden="true">{{ 'Tu:' if lang=='it' else 'You:' }}</span> {{ row.actual }}</td><td class="feedback-expected"><span class="feedback-cell-label" aria-hidden="true">{{ 'Attesa:' if lang=='it' else 'Expected:' }}</span> {{ row.expected }}</td></tr>{% endfor %}
+      </tbody></table>
+    </section>{% endfor %}
+  </article>{% endfor %}
+  {% if qualification %}<form method="post" action="{{ link('qualification_next') }}"><input type="hidden" name="_form" value="{{ token('qualification_next') }}"><button class="primary">{{ t('admit') if passed else t('retry') if person.attempt<cfg.QUALIFICATION_ATTEMPTS else t('continue') }} →</button></form>
+  {% else %}<form method="post" action="{{ link('practice_next') }}"><input type="hidden" name="_form" value="{{ token('practice_next') }}"><button class="primary">{{ t('practice_next') }} →</button></form>{% endif %}
+</section>
+{% endblock %}
+{% block recovery %}{% endblock %}

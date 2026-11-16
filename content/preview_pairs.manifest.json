@@ -1,0 +1,17 @@
+{
+  "pipeline_version": "2.0",
+  "instrument_version": "2.0",
+  "source_type": "synthetic",
+  "file_sha256": "3399fc3850f320d7b66c2c11d47b726b3fe8e2da32555d65f2467002329e3253",
+  "site_canonical_sha256": "c3171eafae0ca1495392a56ea4c8304b16ecc5b57eeda166c7833c21b057d095",
+  "item_count": 24,
+  "description": "Twenty-four distinct invented metabolic-literature pairs, eight per arm, for preview only. Real exposure names; original fictional studies, not clinical evidence. No authors, PMID or publication URL. Private expected paths are kept separately and never loaded by the app.",
+  "schema_sha256": "85bb19c9bfe3b055691132a861bc68cb124d527d2668d01e0eff49a32aa60974",
+  "contract_source": "pipeline package format, version 2.0 (2026-11-13)",
+  "package_sha256": "c3171eafae0ca1495392a56ea4c8304b16ecc5b57eeda166c7833c21b057d095",
+  "source_hashes": {
+    "invented_abstracts": "62c212b9b71c3c7bdd0843bdd5d90e5c30c80fa0b0f2b70aab3dbe9bef25683d",
+    "package_schema": "85bb19c9bfe3b055691132a861bc68cb124d527d2668d01e0eff49a32aa60974"
+  },
+  "configuration_sha256": "bb9c4796a3aa2d942357f4ac27640762cf2c774d57a18184f0224e95c67c6e8e"
+}

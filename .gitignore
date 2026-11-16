@@ -1,0 +1,12 @@
+logs/
+.venv/
+__pycache__/
+*.sqlite3*
+.pytest_cache/
+.ruff_cache/
+.local/
+.env
+.env.*
+!.env.example
+exports/
+*.pyc

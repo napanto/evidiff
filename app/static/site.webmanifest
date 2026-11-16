@@ -1,0 +1,20 @@
+{
+  "name": "evidiff",
+  "short_name": "evidiff",
+  "icons": [
+    {
+      "src": "/static/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#17684e",
+  "background_color": "#f8f9f6",
+  "display": "browser",
+  "start_url": "/"
+}

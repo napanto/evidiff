@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ lang }}" data-lang="{{ lang }}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="{{ url_for('static', filename='favicon-32.png') }}" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+  <link rel="manifest" href="{{ url_for('static', filename='site.webmanifest') }}">
+  <meta name="theme-color" content="#17684e">
+  <meta name="description" content="{{ t('intro') }}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="evidiff">
+  <meta property="og:title" content="evidiff · {{ t('tagline') }}">
+  <meta property="og:description" content="{{ t('intro') }}">
+  <meta property="og:url" content="{{ cfg.BASE_URL }}/">
+  <meta property="og:image" content="{{ cfg.BASE_URL }}{{ url_for('static', filename='og-image-' ~ lang ~ '.png') }}">
+  <meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ 'evidiff: leggi la ricerca, aiutaci a capirla' if lang=='it' else 'evidiff: read the research, help us understand it' }}">
+  <meta property="og:locale" content="{{ 'it_IT' if lang=='it' else 'en_GB' }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex"><meta name="tdm-reservation" content="1"><meta name="color-scheme" content="light dark">
+  <title>evidiff · {{ t('tagline') }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body class="{% block body_class %}{% endblock %}" data-session="{{ person.id if person else '' }}" data-code-hint="{{ person.code_hint if person else '' }}" data-saved-draft="{{ saved_draft }}" data-saved-feedback="{{ saved_feedback }}"><!--email_off-->
+<a class="skip" href="#main">{{ t('continue') }}</a>
+{% include 'task_header.html' %}
+{% if cfg.PREVIEW_MODE %}<div class="preview-banner" role="status" data-compact="{{ t('preview_task_short') }}">{{ 'Anteprima: le risposte non vengono conteggiate né pagate' if lang=='it' else 'Preview: answers are not counted or paid' }}</div>{% endif %}
+{% if closed %}<div class="closed-banner" role="status">{{ t('closed') }}</div>{% endif %}
+<main id="main">
+{% if (not task_header|default(false) or not item is defined) and request.endpoint != 'index' %}<div class="study-progress" role="status"><span class="dot" aria-hidden="true"></span><span>{{ t('study_percent',percent=study.percent) }}</span><span>· {{ t('study_early') if study.percent < 10 else (t('study_almost') if study.percent >= 80 else t('study_help')) }}</span></div>{% endif %}
+{% if notice %}<p class="notice" role="status">{{ t(notice) }}</p>{% endif %}
+{% block content %}{% endblock %}
+{% block feedback %}{% if cfg.PREVIEW_MODE %}<aside class="feedback-box"><form data-feedback-draft="{{ request.endpoint }}" method="post" action="{{ link('feedback_submit') }}"><input type="hidden" name="_form" value="{{ token('feedback_submit', draft_key=request.endpoint, screen=request.endpoint, assignment=assignment.id if assignment is defined and assignment else '', return_to=request.endpoint if request.method=='GET' else 'work' if person else 'index') }}"><label for="preview-feedback">{{ t('feedback_prompt') }}</label><textarea id="preview-feedback" name="message" rows="3" maxlength="2000" required></textarea><button class="secondary">{{ t('feedback_send') }}</button></form></aside>{% endif %}{% endblock %}
+</main>
+{% block recovery %}{% if person %}<aside class="recovery"><details><summary>{{ t('resume') }} · {{ t('your_code') }}</summary><p>{{ t('code_help') }}</p>{% include 'code.html' %}</details>{% if submitted_count and not submitted_link_in_page|default(false) %}<p class="submitted-link"><a href="{{ link('submitted') }}">{{ t('submitted_link') }} →</a></p>{% endif %}</aside>{% endif %}{% endblock %}
+<footer><div><strong>evidiff</strong><p>{{ t('project') }}<br>{{ t('independent') }}</p></div><div><a href="{{ link('privacy') }}">{{ t('privacy') }}</a> · <a href="{{ link('rules') }}">{{ t('rules') }}</a> · <a href="{{ link('rules') }}#author">{{ t('about_author') }}</a>{% if cfg.SOURCE_URL %} · <a href="{{ cfg.SOURCE_URL }}" rel="license noopener">{{ t('source_code') }}</a> (AGPL-3.0){% endif %}{% if cfg.CONTACT_EMAIL %}<p>{{ t('contact') }} <a href="mailto:{{ cfg.CONTACT_EMAIL }}">{{ cfg.CONTACT_EMAIL }}</a></p>{% endif %}</div></footer>
+<!--/email_off--></body></html>

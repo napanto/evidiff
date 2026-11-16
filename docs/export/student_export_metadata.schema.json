@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Local private student snapshot companion",
+  "$comment": "14 required fields and two optional aggregates. Eligibility keys must equal exactly exported session pseudonyms. Hash binding, snapshot history, programme totals and closure rule require the local evaluator.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "pipeline_version": {
+      "const": "2.0"
+    },
+    "instrument_version": {
+      "const": "2.0"
+    },
+    "human_package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "site_pair_package_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "site_configuration_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "site_instrument_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "answers_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "human_collection_lock_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "reference_revision_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "snapshot_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+    },
+    "exported_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+    },
+    "collection_closed": {
+      "type": "boolean"
+    },
+    "eligibility": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "eligible": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "confirmed_at": {
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "date-time",
+                "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "basis": {
+            "enum": [
+              "adult_unipi_approved_programme",
+              "operator_review",
+              "pending"
+            ]
+          }
+        },
+        "required": [
+          "eligible",
+          "confirmed_at",
+          "basis"
+        ],
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "eligible": {
+                  "type": "null"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "confirmed_at": {
+                  "type": "null"
+                },
+                "basis": {
+                  "const": "pending"
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "confirmed_at": {
+                  "type": "string",
+                  "format": "date-time",
+                  "description": "Timezone-aware ISO 8601; cross-file ordering and exact historical cutoff are validated locally."
+                },
+                "basis": {
+                  "enum": [
+                    "adult_unipi_approved_programme",
+                    "operator_review"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "demographics": {
+      "type": "object",
+      "properties": {
+        "population": {
+          "const": "unique_sessions_with_accepted_eligible_real_read"
+        },
+        "sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "programme": {
+          "type": "object",
+          "properties": {
+            "medicine_and_surgery": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "biotechnology": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "molecular_biotechnology": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "biotechnologies_ai_health": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pharmacy": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "pharmaceutical_chemistry": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "biomedical_engineering": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "year": {
+          "type": "object",
+          "properties": {
+            "1": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "2": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "3": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "4": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "5": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "6": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "other": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        },
+        "programme_missing": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "year_missing": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "population",
+        "sessions",
+        "programme",
+        "year",
+        "programme_missing",
+        "year_missing"
+      ],
+      "additionalProperties": false
+    },
+    "flag_history": {
+      "type": "object",
+      "properties": {
+        "ever_flagged_sessions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manual_include_overrides": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "manual_exclude_overrides": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "participant_corrections": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "participant_corrections_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "pipeline_version",
+    "instrument_version",
+    "human_package_sha256",
+    "site_pair_package_sha256",
+    "site_configuration_sha256",
+    "site_instrument_sha256",
+    "answers_sha256",
+    "human_collection_lock_sha256",
+    "reference_revision_sha256",
+    "snapshot_at",
+    "exported_at",
+    "collection_closed",
+    "eligibility"
+  ],
+  "additionalProperties": false
+}

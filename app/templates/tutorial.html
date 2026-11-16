@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% set task_flow = true %}
+{% block content %}
+<section class="narrow prose">
+  <p class="eyebrow">{{ t('guidelines') }}</p>
+  <h1>{{ t('tutorial') }}</h1>
+  {% for paragraph in copy.tutorial %}<p>{{ paragraph }}</p>{% endfor %}
+  <p><a href="{{ link('guidelines') }}">{{ t('guidelines') }} ↗</a></p>
+  <form method="post" action="{{ link('tutorial_done') }}">
+    <input type="hidden" name="_form" value="{{ token('tutorial_done') }}">
+    <button class="primary">{{ t('tutorial_next') }} →</button>
+  </form>
+</section>
+{% endblock %}

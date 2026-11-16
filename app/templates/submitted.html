@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% set submitted_link_in_page = true %}
+{% block body_class %}submitted-page{% endblock %}
+{% block content %}
+<section class="narrow submitted" aria-labelledby="submitted-title">
+  <p class="eyebrow">{{ 'Le tue coppie' if lang=='it' else 'Your pairs' }}</p>
+  <h1 id="submitted-title">{{ t('submitted_title') }}</h1>
+  {% if correction_note %}<p class="notice" role="status">{% if correction_note=='corrected' %}{{ t('correction_saved', number=correction_pair) if correction_pair else t('correction_saved_plain') }}{% else %}{{ t('correction_' ~ correction_note) }}{% endif %}</p>{% endif %}
+  {% if closed and pairs %}<p class="notice">{{ t('correction_closed') }}</p>{% endif %}
+  {% if pairs %}
+  <p>{{ t('submitted_intro') }}</p>
+  <ol class="submitted-pairs">
+    {% for pair in pairs %}
+    <li class="submitted-pair">
+      <div class="submitted-pair-head">
+        <h2>{{ t('submitted_pair', number=pair.number) }}</h2>
+        <p class="submitted-when">{{ t('submitted_at', when=pair.submitted) }}</p>
+        {% if pair.corrected %}<p class="submitted-status">✓ {{ t('corrected_at', when=pair.corrected) }}</p>{% endif %}
+      </div>
+      <ul class="submitted-titles">{% for side in ['a','b'] %}<li><span class="abstract-badge" data-side="{{ side }}" aria-label="Abstract {{ side|upper }}">{{ side|upper }}</span> <span lang="en" title="{{ pair.titles[side] }}">{{ pair.titles[side]|truncate(90, end='…') }}</span></li>{% endfor %}</ul>
+      {% if not closed %}<a class="secondary button" href="{{ link('correction_form', assignment=pair.assignment_id) }}">{{ t('review_and_correct') }}<span class="visually-hidden"> · {{ t('submitted_pair', number=pair.number) }}</span> →</a>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p>{{ t('submitted_empty') }}</p>
+  {% endif %}
+  <p><a href="{{ link('work') }}">← {{ t('return') }}</a></p>
+</section>
+{% endblock %}

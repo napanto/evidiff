@@ -1,0 +1,7 @@
+{% set article = item[side].article %}{% set claim = item[side].claim %}{% set view = claim_view(claim, article.study, lang) %}
+<article class="article-card" data-source-side="{{ side }}" data-claim-side="{{ side }}">
+  <div class="article-heading"><span class="abstract-badge" data-side="{{ side }}">{{ side|upper }}</span><h2 class="article-title" lang="en">{{ article.title }}</h2></div>
+  <p class="article-meta">{% if article.year %}{{ article.year }} · {% endif %}{% if article.pmid %}<a href="https://pubmed.ncbi.nlm.nih.gov/{{ article.pmid }}/" target="_blank" rel="noopener noreferrer">PubMed ↗</a>{% else %}{{ t('synthetic_example') }}{% endif %}</p>
+  <p class="evidence-legend">{{ 'Evidenziate: le frasi indicate dal sistema' if lang=='it' else 'Highlighted: the sentences the system points to' }}</p>
+  <div class="abstract-text" lang="en">{% for sentence in article.sentences %}<span id="sentence-{{ side }}-{{ sentence.id }}" class="sentence{% if sentence.id in view.evidence %} evidence{% endif %}" data-sentence-id="{{ sentence.id }}"><sup>{{ sentence.id }}</sup> {{ sentence.text }} </span>{% endfor %}</div>
+</article>

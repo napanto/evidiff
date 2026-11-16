@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% set task_flow = true %}
+{% block body_class %}practice-intro-page{% endblock %}
+{% block content %}
+<section class="practice-intro" aria-labelledby="practice-title">
+  <p class="eyebrow">evidiff</p><h1 id="practice-title">{{ t('practice_intro_title') }}</h1>
+  <p>{{ t('practice_intro_one') }}</p><p>{{ t('practice_intro_two') }}</p><p>{{ t('practice_intro_rule') }}</p>
+  <p>{{ t('practice_intro_three') }}</p><p>{{ t('practice_intro_four') }} <a href="{{ link('rules') }}">{{ t('rules') }}</a></p>
+  <form method="post" action="{{ link('practice_begin') }}"><input type="hidden" name="_form" value="{{ token('practice_begin', assignment=assignment.id) }}"><button class="primary">{{ t('practice_begin') }} →</button></form>
+</section>
+{% endblock %}
+{% block feedback %}{% endblock %}

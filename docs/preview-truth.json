@@ -1,0 +1,2215 @@
+{
+  "private": true,
+  "purpose": "Author solutions for invented preview content; never loaded or served by the app; not production labels.",
+  "instrument_version": "2.0",
+  "package_sha256": "c3171eafae0ca1495392a56ea4c8304b16ecc5b57eeda166c7833c21b057d095",
+  "pairs": [
+    {
+      "item_id": "v2-pair-8001",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "yes"
+      },
+      "label": "concordant",
+      "factor": "none",
+      "reason": "Both cohorts link higher baseline adiponectin to lower incident diabetes risk; A omits its explicitly reported total.",
+      "errors": [
+        {
+          "side": "a",
+          "field": "sample_size",
+          "problem": "missing_from_extraction",
+          "description": "The reported 638 participants are absent from both total and cohort count.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8002",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "no",
+              "problems": [
+                "wrong_direction"
+              ]
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "material"
+      },
+      "label": "extraction_error",
+      "factor": "none",
+      "reason": "A reverses the positive chemerin association in women: the source and positive coefficient show higher, not lower, insulin resistance.",
+      "errors": [
+        {
+          "side": "a",
+          "field": "result",
+          "problem": "wrong_direction",
+          "description": "The direction code is negative despite the positive coefficient and explicit higher insulin resistance.",
+          "material": true
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8003",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "no"
+        }
+      },
+      "label": "contradictory",
+      "factor": "none",
+      "reason": "Opposite liver triglyceride effects under matching species, sex, obesity model, dose, duration, comparator and analysis; no relevant explanatory difference is documented.",
+      "errors": [
+        {
+          "side": "b",
+          "field": "sample_size",
+          "problem": "missing_from_extraction",
+          "description": "The total of 32 animals is missing although reported; the two group counts remain correct.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8004",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "no",
+            "reason": "different_exposure"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q2_primary": "exposure"
+      },
+      "label": "not_comparable",
+      "factor": "other",
+      "reason": "Leptin and resistin are different exposures despite the shared waist outcome; the omitted plasma detail in A is supporting only.",
+      "errors": [
+        {
+          "side": "a",
+          "field": "context",
+          "problem": "missing_from_extraction",
+          "description": "Plasma is explicitly reported but absent from the extraction.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8005",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "effect_vs_no_effect"
+      },
+      "label": "not_replicated",
+      "factor": "none",
+      "reason": "A reports lower fasting glucose, while B expressly does not confirm that benefit; B omits the reported cellulose count.",
+      "errors": [
+        {
+          "side": "b",
+          "field": "sample_size",
+          "problem": "missing_from_extraction",
+          "description": "The cellulose group count of 84 is reported but missing.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8006",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "no",
+            "reason": "outcome_definition"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q2_primary": "outcome"
+      },
+      "label": "not_comparable",
+      "factor": "outcome_definition",
+      "reason": "The selected walnut findings concern triglycerides in A and systolic pressure in B, which are different outcomes.",
+      "errors": [
+        {
+          "side": "a",
+          "field": "analysis",
+          "problem": "missing_from_extraction",
+          "description": "Period adjustment is stated in the source but omitted from the covariate list.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8007",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "no",
+            "reason": "comparator"
+          }
+        },
+        "q2_primary": "comparison"
+      },
+      "label": "not_comparable",
+      "factor": "comparator",
+      "reason": "A estimates a between-arm dietary contrast; B estimates uncontrolled change from the participants’ own baseline, so the comparisons differ.",
+      "errors": [
+        {
+          "side": "b",
+          "field": "context",
+          "problem": "missing_from_extraction",
+          "description": "The recruitment country Croatia is explicit but omitted.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8008",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "yes",
+          "factor": "population"
+        }
+      },
+      "label": "apparent_contradiction",
+      "factor": "population",
+      "reason": "The same meal-timing comparison gives opposite glucose directions in adults with prediabetes versus adolescents with obesity; population is the relevant documented difference.",
+      "errors": [
+        {
+          "side": "a",
+          "field": "sample_size",
+          "problem": "missing_from_extraction",
+          "description": "The total analysed count of 108 is omitted; arm counts remain present.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8009",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "yes"
+      },
+      "label": "concordant",
+      "factor": "none",
+      "reason": "Both prospective cohorts report lower glycated haemoglobin after metformin initiation relative to pretreatment; B omits only the explicitly stated whole-blood material.",
+      "errors": [
+        {
+          "side": "b",
+          "field": "context",
+          "problem": "missing_from_extraction",
+          "description": "Whole blood is stated but not extracted.",
+          "material": false
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8010",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "effect_vs_no_effect"
+      },
+      "label": "not_replicated",
+      "factor": "none",
+      "reason": "A reports reduced albuminuria; B explicitly does not confirm that effect, rather than merely presenting a nonsignificant estimate.",
+      "errors": []
+    },
+    {
+      "item_id": "v2-pair-8011",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "no",
+              "problems": [
+                "wrong_value"
+              ]
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "material"
+      },
+      "label": "extraction_error",
+      "factor": "none",
+      "reason": "B falsely calls an uncertain adiponectin increase statistically significant despite the explicit contrary wording, p=.12 and an interval spanning zero.",
+      "errors": [
+        {
+          "side": "b",
+          "field": "significance",
+          "problem": "wrong_value",
+          "description": "The significance label and wording have been reversed; the numerical p-value and interval remain faithful.",
+          "material": true
+        }
+      ]
+    },
+    {
+      "item_id": "v2-pair-8012",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "no"
+        }
+      },
+      "label": "contradictory",
+      "factor": "none",
+      "reason": "The cohorts report opposite changes in low-density lipoprotein cholesterol from baseline with matching population, country, exposure, dose, duration, assay and adjustment; neither abstract supplies a relevant explanatory difference.",
+      "errors": []
+    },
+    {
+      "item_id": "v2-pair-2513",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "yes"
+      },
+      "category": "concordant",
+      "reason": "Both independent cell experiments report greater insulin-stimulated glucose uptake with irisin; the omitted total donor count in A is supporting detail.",
+      "errors": [
+        {
+          "side": "a",
+          "check": "sample_size",
+          "problem": "missing_from_extraction",
+          "location": "a.article.study.total_n",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "concordant",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2514",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "yes",
+          "factor": "population"
+        }
+      },
+      "category": "apparent_contradiction",
+      "reason": "The positive association in adults with fatty liver and inverse association in healthy adolescents differ in documented population; B omits its recruitment country.",
+      "errors": [
+        {
+          "side": "b",
+          "check": "context",
+          "problem": "missing_from_extraction",
+          "location": "b.claim.context.region",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "apparent_contradiction",
+      "factor": "population"
+    },
+    {
+      "item_id": "v2-pair-2515",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q2": {
+          "exposure": {
+            "answer": "no",
+            "reason": "different_exposure"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q2_primary": "exposure"
+      },
+      "category": "not_comparable",
+      "reason": "Visfatin and apelin are different exposures, even though both analyses concern fasting glucose in the same clinical population.",
+      "errors": [],
+      "label": "not_comparable",
+      "factor": "other"
+    },
+    {
+      "item_id": "v2-pair-2516",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "no",
+              "problems": [
+                "wrong_direction"
+              ]
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "material"
+      },
+      "category": "extraction_error",
+      "reason": "A reports greater odds of metabolic syndrome with higher retinol-binding protein, but its extracted direction is lower odds; this reverses the case-control finding.",
+      "errors": [
+        {
+          "side": "a",
+          "check": "result",
+          "problem": "wrong_direction",
+          "location": "a.claim.result.estimate_direction",
+          "relevance": "material"
+        }
+      ],
+      "label": "extraction_error",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2517",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "effect_vs_no_effect"
+      },
+      "category": "not_replicated",
+      "reason": "A reports lower triglycerides with lentils; B explicitly does not confirm that effect. B omits the reported lentil-group count.",
+      "errors": [
+        {
+          "side": "b",
+          "check": "sample_size",
+          "problem": "missing_from_extraction",
+          "location": "b.claim.comparison.index_group.n",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "not_replicated",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2518",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "no"
+        }
+      },
+      "category": "contradictory",
+      "reason": "Opposite triglyceride directions are reported with matching population, country, design, pretreatment reference, dose, duration and analysis; the abstracts provide no explanatory difference. A omits the oil dose.",
+      "errors": [
+        {
+          "side": "a",
+          "check": "context",
+          "problem": "missing_from_extraction",
+          "location": "a.claim.context.dose",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "contradictory",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2519",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "no",
+            "reason": "outcome_definition"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q2_primary": "outcome"
+      },
+      "category": "not_comparable",
+      "reason": "A extracts low-density lipoprotein cholesterol and B glycated haemoglobin; those are different outcomes, irrespective of the shared food intervention.",
+      "errors": [],
+      "label": "not_comparable",
+      "factor": "outcome_definition"
+    },
+    {
+      "item_id": "v2-pair-2520",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "no",
+              "problems": [
+                "not_supported_by_abstract",
+                "wrong_group_time"
+              ]
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "material"
+      },
+      "category": "extraction_error",
+      "reason": "A invents calcium supplementation as the comparator although the trial used placebo; calcium was only a secondary measurement.",
+      "errors": [
+        {
+          "side": "a",
+          "check": "comparison",
+          "location": "a.claim.comparison.comparator",
+          "relevance": "material",
+          "problems": [
+            "not_supported_by_abstract",
+            "wrong_group_time"
+          ]
+        }
+      ],
+      "label": "extraction_error",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2521",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "yes"
+      },
+      "category": "concordant",
+      "reason": "The meta-analysis and a separate Austrian study both report a smaller waist with semaglutide; B omits treatment duration from its context although the endpoint remains explicit.",
+      "errors": [
+        {
+          "side": "b",
+          "check": "context",
+          "problem": "missing_from_extraction",
+          "location": "b.claim.context.duration",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "concordant",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2522",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "effect_vs_no_effect"
+      },
+      "category": "not_replicated",
+      "reason": "A reports lower triglycerides; B explicitly does not confirm a triglyceride benefit despite glucose improvement. A omits the named baseline adjustment variable.",
+      "errors": [
+        {
+          "side": "a",
+          "check": "analysis",
+          "problem": "missing_from_extraction",
+          "location": "a.claim.analysis.covariates",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "not_replicated",
+      "factor": "none"
+    },
+    {
+      "item_id": "v2-pair-2523",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "no",
+            "reason": "comparator"
+          }
+        },
+        "q2_primary": "comparison"
+      },
+      "category": "not_comparable",
+      "reason": "The reference is placebo with brief counselling in A but intensive lifestyle support in B; those treatment contrasts are not equivalent.",
+      "errors": [],
+      "label": "not_comparable",
+      "factor": "comparator"
+    },
+    {
+      "item_id": "v2-pair-2524",
+      "expected_path": {
+        "q1": {
+          "a": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "yes",
+              "problems": []
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          },
+          "b": {
+            "result": {
+              "answer": "yes",
+              "problems": []
+            },
+            "groups": {
+              "answer": "yes",
+              "problems": []
+            },
+            "sample_size": {
+              "answer": "no",
+              "problems": [
+                "missing_from_extraction"
+              ]
+            },
+            "comparison": {
+              "answer": "yes",
+              "problems": []
+            },
+            "analysis": {
+              "answer": "yes",
+              "problems": []
+            },
+            "significance": {
+              "answer": "yes",
+              "problems": []
+            },
+            "context": {
+              "answer": "yes",
+              "problems": []
+            }
+          }
+        },
+        "q1_relevance": "not_material",
+        "q2": {
+          "exposure": {
+            "answer": "yes"
+          },
+          "outcome": {
+            "answer": "yes"
+          },
+          "comparison": {
+            "answer": "yes"
+          }
+        },
+        "q3": "no",
+        "q4": "opposite",
+        "q5": {
+          "answer": "yes",
+          "factor": "population"
+        }
+      },
+      "category": "apparent_contradiction",
+      "reason": "Opposite insulin responses occur in obesity with normal glucose tolerance versus recent diabetes with low basal insulin; B omits the placebo-group count.",
+      "errors": [
+        {
+          "side": "b",
+          "check": "sample_size",
+          "problem": "missing_from_extraction",
+          "location": "b.claim.comparison.reference_group.n",
+          "relevance": "not_material"
+        }
+      ],
+      "label": "apparent_contradiction",
+      "factor": "population"
+    }
+  ],
+  "answer_code_revision": "expected paths use the current answer codes; their meaning and the derived legacy categories/factors are unchanged"
+}

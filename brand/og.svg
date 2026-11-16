@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: AGPL-3.0-only -->
+<!-- evidiff social preview (1200x630): the mark between two abstract cards.
+     Pure geometry, no fonts. Rendered by scripts/make_brand_assets.py. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect x="0" y="0" width="1200" height="630" fill="#f8f9f6"/>
+  <rect x="0" y="606" width="1200" height="24" fill="#17684e"/>
+  <!-- Abstract A -->
+  <g fill="#17684e" opacity="0.22">
+    <rect x="96" y="150" width="280" height="22" rx="11"/>
+    <rect x="96" y="196" width="250" height="22" rx="11"/>
+    <rect x="96" y="242" width="280" height="22" rx="11"/>
+    <rect x="96" y="288" width="210" height="22" rx="11"/>
+    <rect x="96" y="334" width="265" height="22" rx="11"/>
+    <rect x="96" y="380" width="230" height="22" rx="11"/>
+    <rect x="96" y="426" width="180" height="22" rx="11"/>
+  </g>
+  <rect x="96" y="242" width="280" height="22" rx="11" fill="#17684e"/>
+  <!-- Abstract B -->
+  <g fill="#17684e" opacity="0.22">
+    <rect x="824" y="150" width="280" height="22" rx="11"/>
+    <rect x="854" y="196" width="250" height="22" rx="11"/>
+    <rect x="824" y="242" width="280" height="22" rx="11"/>
+    <rect x="894" y="288" width="210" height="22" rx="11"/>
+    <rect x="839" y="334" width="265" height="22" rx="11"/>
+    <rect x="874" y="380" width="230" height="22" rx="11"/>
+    <rect x="924" y="426" width="180" height="22" rx="11"/>
+  </g>
+  <rect x="824" y="334" width="280" height="22" rx="11" fill="#c9962a"/>
+  <!-- The mark, 320 px, centred -->
+  <g transform="translate(440 140) scale(0.625)">
+    <rect x="0" y="0" width="512" height="512" rx="112" fill="#17684e"/>
+    <circle cx="206" cy="256" r="118" fill="#f8f9f6"/>
+    <circle cx="306" cy="256" r="118" fill="#f2c14e"/>
+    <path d="M 256 149.12 A 118 118 0 0 1 256 362.88 A 118 118 0 0 1 256 149.12 Z" fill="#0f4a37"/>
+  </g>
+</svg>

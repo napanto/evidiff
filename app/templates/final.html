@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% set submitted_link_in_page = submitted_count %}
+{% block content %}
+<section class="message-card final">
+  <div class="message-symbol" aria-hidden="true">✓</div><h1>{{ t('thanks') }}</h1>
+  <p class="eyebrow">{{ t('your_code') }}</p>{% include 'code.html' %}
+  {% if cfg.COMPENSATION_ENABLED %}<div class="final-pay"><span>{{ t('payable') }}</span><strong>{{ money(earn.payable_cents) }}</strong></div>{% endif %}
+  {% if earn.needs_review %}<p>{{ t('programme_review') }}</p>{% elif not cfg.COMPENSATION_ENABLED %}{% elif earn.payment_exception and not cfg.PREVIEW_MODE %}<p>{{ t('site_stop_exception') }}</p>{% elif not earn.payable_cents and not cfg.PREVIEW_MODE %}<p>{{ t('below_min', minimum=cfg.MIN_PAYOUT_PAIRS) }}</p>{% endif %}
+  <p>{{ t('preview_banner') if cfg.PREVIEW_MODE else t('final_help') }}</p><p>{{ t('code_help') }}</p>
+  {% if cfg.CONTACT_EMAIL %}<a href="mailto:{{ cfg.CONTACT_EMAIL }}">{{ cfg.CONTACT_EMAIL }} ↗</a>{% endif %}
+  {% if closed %}<p class="notice">{{ t('closed_resume') }}</p>{% elif not person.excluded and not person.quality_failed and not earn.needs_review %}<form method="post" action="{{ link('resume_work') }}"><input type="hidden" name="_form" value="{{ token('resume_work') }}"><button class="primary">{{ t('resume_work') }} →</button></form>{% endif %}
+  {% if submitted_count %}<p class="submitted-link"><a href="{{ link('submitted') }}">{{ t('submitted_link') }}</a></p>{% endif %}
+  <p><a href="{{ link('finish_form') }}">{{ t('update_details') }}</a></p>
+</section>
+{% endblock %}

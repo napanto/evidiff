@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% set ui = instrument_copy(lang) %}
+{% set task_header = true %}
+{% from 'task_macros.html' import source, fields, value, help, options, factor_select, heading with context %}
+{% set views={'a':claim_view(item.a.claim,item.a.article.study,lang),'b':claim_view(item.b.claim,item.b.article.study,lang)} %}
+{% set words={'a':'Abstract A','b':'Abstract B','comparison':'Confronto' if lang=='it' else 'Comparison','review':'Invio' if lang=='it' else 'Submit'} %}
+{% set keywords=ui.keywords %}
+{% set correcting=correction is defined and correction %}
+{% block body_class %}comparison-page task-page{% endblock %}
+{% macro comparison_data(key) %}
+{% set a=views.a.comparisons[key] %}{% set b=views.b.comparisons[key] %}
+{% set rowkeys=(a.rows+b.rows)|map(attribute='key')|unique|list %}
+{% if key=='context' %}{% set rowkeys=['analysis_population','index_group_name','index_group_population','reference_group_name','reference_group_population','subgroup','dose','duration','design','aims','method','adjustment','covariates','region','sample'] %}{% endif %}
+<div class="extracted-data"><h3>{{ 'Il sistema ha estratto' if lang=='it' else 'The system extracted' }}</h3>
+<table class="comparison-values"><thead><tr>{% for side in ['a','b'] %}<th scope="col"><span class="abstract-badge" data-side="{{ side }}">{{ side|upper }}</span> Abstract {{ side|upper }}</th>{% endfor %}</tr></thead>
+{% if a.sentence or b.sentence %}<tbody class="comparison-attribute" data-field-key="finding"><tr><th class="comparison-attribute-label" scope="rowgroup" colspan="2">{{ keywords.result }}</th></tr><tr class="comparison-value-row"><td data-side="a"><p class="claim-sentence">{{ a.sentence }}</p></td><td data-side="b"><p class="claim-sentence">{{ b.sentence }}</p></td></tr></tbody>{% endif %}
+{% for rowkey in rowkeys %}{% set ar=a.rows|selectattr('key','equalto',rowkey)|first|default(none) %}{% set br=b.rows|selectattr('key','equalto',rowkey)|first|default(none) %}{% if ar or br %}
+<tbody class="comparison-attribute" data-field-key="{{ rowkey }}"><tr><th class="comparison-attribute-label" scope="rowgroup" colspan="2">{{ ar.label if ar else br.label }}</th></tr><tr class="comparison-value-row">
+{% for side,row in [('a',ar),('b',br)] %}<td data-side="{{ side }}"{% if row and row.raw %} title="{{ row.raw }}"{% endif %}>{% if row and row.group %}<span class="comparison-group-role">{{ row.group }}</span>{% endif %}{% if not row and views[side].no_reference_group and rowkey.startswith('reference_group_') %}{% if rowkey=='reference_group_name' %}{{ views[side].words.no_reference_group }}{% else %}<span aria-label="{{ views[side].words.no_reference_group }}">—</span>{% endif %}{% else %}{{ value(row) }}{% endif %}</td>{% endfor %}
+</tr></tbody>{% endif %}{% endfor %}
+</table></div>
+{% endmacro %}
+{% macro key_rule(key) %}{% if ui.key_rules[key] %}<div class="key-rule" role="note"><strong>{{ ui.key_rule_label }}</strong>{{ ui.key_rules[key] }}</div>{% endif %}{% endmacro %}
+{% macro comparison_source(key) %}{% for side in ['a','b'] %}{{ source(item[side].article,views[side],side,views[side].comparisons[key].evidence) }}{% endfor %}{% endmacro %}
+{% block content %}
+{% if correcting %}<section class="correction-banner" aria-labelledby="correction-banner-text">
+  <p id="correction-banner-text" class="correction-banner-main">{{ t('correction_banner', when=correction.submitted) }}</p>
+  <p>{{ t('correction_from_latest', when=correction.corrected) if correction.corrected else t('correction_from_original') }}</p>
+  <a class="secondary button" href="{{ link('submitted') }}">← {{ t('correction_cancel') }}</a>
+</section>{% endif %}
+<nav class="stage-bar" aria-label="{{ 'Fasi della coppia' if lang=='it' else 'Stages of this pair' }}">{% for stage,badge in [('a','A'),('b','B'),('comparison','⇄'),('review','✓')] %}<button type="button" class="stage-button" data-stage-target="{{ stage }}" data-go-stage="{{ stage }}"><span class="stage-badge" aria-hidden="true">{{ badge }}</span><span class="stage-name-long">{{ words[stage] }}</span><span class="stage-name-short">{{ 'Abstract' if stage in ['a','b'] else 'Compare' if stage=='comparison' and lang=='en' else words[stage] }}</span><span class="stage-complete" hidden aria-label="{{ 'Completato' if lang=='it' else 'Complete' }}">✓</span></button>{% endfor %}</nav>
+<div class="task-workspace">
+  <aside class="source-column" aria-label="{{ t('reading') }}" tabindex="0">{% for side in ['a','b'] %}{% include 'claim.html' %}{% endfor %}</aside>
+  <form class="answer-form instrument-form task-card" method="post" action="{{ link('correction' if correcting else 'qualification_answer' if qualification else 'answer') }}" data-draft="{{ item.id if qualification else assignment.id }}"{% if correcting %} data-prefill='{{ correction.prefill|tojson }}'{% endif %} data-instrument="2.0" data-error="{{ ui.error }}" data-material-error="{{ ui.no_identified_error }}">
+    <input type="hidden" name="_form" value="{{ token('correction', assignment=assignment.id) if correcting else token('qualification_answer', item=item.id) if qualification else token('answer', assignment=assignment.id, issued=assignment.started or assignment.created) }}">
+    <input type="hidden" name="path" value="">
+    <div class="task-card-header"><span class="current-block-badge abstract-badge" aria-hidden="true">A</span><p class="card-progress"></p><span class="stage-dots" aria-hidden="true"></span></div>
+    <p class="check-announcement visually-hidden" role="status" aria-live="polite" aria-atomic="true"></p>
+    <p class="instrument-error step-error" role="alert" hidden></p>
+    <p class="branch-notice" role="status" hidden></p>
+    <details class="done-disclosure"><summary class="done-count"></summary><div class="done-list"></div></details>
+    {% for side in ['a','b'] %}{% for field,text in ui.rows %}{% set check=ui.checks[field] %}{% set section=views[side].sections|selectattr('key','equalto',field)|first %}
+    <section class="task-step" data-step="q1.{{ side }}.{{ field }}" data-stage="{{ side }}" data-keyword="{{ keywords[field] }}" data-evidence-{{ side }}="{{ section.evidence|join(',') }}" data-q1-side="{{ side }}" data-q1-field="{{ field }}"{% if section.empty %} data-empty-check{% endif %}>
+      {% if side=='a' and loop.first %}<p class="q1-framing">{{ ui.q1_frame }}</p>{% endif %}
+      {{ heading(keywords[field],check.question.format(side=side|upper),check.how,check.help,check.example,true) }}
+      <div class="extracted-data" data-field="{{ field }}" data-side="{{ side }}"><h3>{{ 'Il sistema ha estratto' if lang=='it' else 'The system extracted' }}</h3>{{ fields(section) }}{% if field=='result' and cfg.SHOW_TECHNICAL_DETAILS %}<details class="technical-details"><summary>{{ views[side].words.technical }}</summary><pre>{{ views[side].raw }}</pre></details>{% endif %}</div>
+      {{ source(item[side].article,views[side],side,section.evidence) }}
+      {{ key_rule('q1_'~field) }}
+      <fieldset class="answer-options" aria-label="{{ check.question.format(side=side|upper) }}"><legend class="visually-hidden">{{ check.question.format(side=side|upper) }}</legend>
+      {% call(value) options('q1.'~side~'.'~field,1,[('yes',ui.yes),('no',ui.no),('cannot_tell',ui.cannot_tell)]) %}{% if value=='no' %}<div class="field-problems conditional-answer"><p>{{ ui.problem_title }}</p><div class="problem-options">{% for value,label in ui.problems %}{% if field=='result' or loop.index<=4 %}<label><input type="checkbox" name="q1.{{ side }}.{{ field }}.problems" value="{{ value }}" data-block="1"><span>{{ label }}</span></label>{% endif %}{% endfor %}</div></div>{% endif %}{% endcall %}
+      </fieldset>
+    </section>
+    {% endfor %}{% endfor %}
+    <section class="task-step" data-step="q1.relevance" data-stage="b" data-keyword="{{ keywords.relevance }}" data-evidence-a="{{ views.a.evidence|join(',') }}" data-evidence-b="{{ views.b.evidence|join(',') }}">
+      {{ heading(keywords.relevance,ui.q1_relevance_title,ui.how.q1_relevance,ui.q1_relevance_help,ui.examples.q1_relevance) }}
+      <div class="extracted-data"><h3>{{ 'I problemi che hai indicato' if lang=='it' else 'The problems you identified' }}</h3><div class="problem-review-list"></div><noscript><p>{{ 'Rivedi i controlli precedenti in cui hai scelto «No» o «Non posso stabilirlo».' if lang=='it' else 'Review the checks above where you chose “No” or “Cannot tell”.' }}</p></noscript></div>
+      {% for side in ['a','b'] %}{{ source(item[side].article,views[side],side,views[side].evidence) }}{% endfor %}
+      {{ key_rule('q1_relevance') }}
+      {{ options('q1.relevance',1,ui.relevance_options) }}
+      <p class="relevance-notice" role="status" data-notice="{{ ui.relevance_notice }}" hidden></p>
+    </section>
+    {% for field,text in ui.q2_rows %}{% set keyword=keywords.measures if field=='comparison' else keywords[field] %}
+    <section class="task-step" data-step="q2.{{ field }}" data-stage="comparison" data-keyword="{{ keyword }}" data-q2-field="{{ field }}" data-evidence-a="{{ views.a.comparisons[field].evidence|join(',') }}" data-evidence-b="{{ views.b.comparisons[field].evidence|join(',') }}">
+      {% if loop.first %}<p class="q2-framing">{{ ui.q2_frame }}</p>{% endif %}
+      {{ heading(keyword,text,ui.how['q2_'~field],ui.q2_help,ui.examples['q2_'~field]) }}
+      {{ comparison_data(field) }}{{ comparison_source(field) }}{{ key_rule('q2_'~field) }}
+      {% call(value) options('q2.'~field,2,[('yes',ui.yes),('no',ui.no),('cannot_tell',ui.cannot_tell)]) %}{% if value=='no' %}<div class="comparison-reason conditional-answer">
+        {% if field=='exposure' %}<label for="exposure-reason">{{ ui.reason }}</label><select id="exposure-reason" name="q2.exposure.reason" data-block="2"><option value="">{{ ui.select }}</option>{% for value,label in ui.exposure_reasons %}<option value="{{ value }}">{{ label }}</option>{% endfor %}</select>
+        {% elif field=='outcome' %}<p>{{ ui.outcome_reason }}</p>
+        {% else %}<label>{{ ui.reason }}<select name="q2.comparison.reason" data-block="2"><option value="">{{ ui.select }}</option>{% for value,text in ui.comparison_reasons %}<option value="{{ value }}">{{ text }}</option>{% endfor %}</select></label><label class="q2-other">{{ ui.other_detail }}<input name="q2.comparison.detail" data-block="2" maxlength="200"></label>{% endif %}
+      </div>{% endif %}{% endcall %}
+    </section>{% endfor %}
+    <section class="task-step" data-step="q2.primary" data-stage="comparison" data-keyword="{{ keywords.primary }}" data-evidence-a="{{ views.a.comparisons.comparison.evidence|join(',') }}" data-evidence-b="{{ views.b.comparisons.comparison.evidence|join(',') }}">
+      {{ heading(keywords.primary,ui.primary_reason,ui.how.q2_primary,ui.q2_help,ui.examples.q2_primary) }}
+      {{ comparison_data('comparison') }}{{ comparison_source('comparison') }}
+      <div class="instrument-options">{% for field,text in ui.q2_rows %}<label class="instrument-option" data-primary="{{ field }}"><input type="radio" name="q2.primary" value="{{ field }}" data-block="2"><span>{{ keywords.measures if field=='comparison' else keywords[field] }}</span></label>{% endfor %}</div>
+    </section>
+    {% for step in ['q3','q4'] %}
+    <section class="task-step" data-step="{{ step }}" data-stage="comparison" data-keyword="{{ keywords[step] }}" data-evidence-a="{{ views.a.comparisons.result.evidence|join(',') }}" data-evidence-b="{{ views.b.comparisons.result.evidence|join(',') }}">
+      {{ heading(keywords[step],ui[step~'_title'],ui.how[step],ui[step~'_help'],ui.examples[step]) }}
+      {{ comparison_data('result') }}{{ comparison_source('result') }}{{ key_rule(step) }}
+      {{ options(step,3 if step=='q3' else 4,[('yes',ui.yes),('no',ui.no),('cannot_tell',ui.cannot_tell)] if step=='q3' else ui.q4_options) }}
+    </section>{% endfor %}
+    <section class="task-step" data-step="q5.answer" data-stage="comparison" data-keyword="{{ keywords.q5 }}" data-evidence-a="{{ views.a.comparisons.context.evidence|join(',') }}" data-evidence-b="{{ views.b.comparisons.context.evidence|join(',') }}">
+      {{ heading(keywords.q5,ui.q5_title,ui.how.q5,ui.q5_help,ui.examples.q5) }}
+      {{ comparison_data('context') }}{{ comparison_source('context') }}
+      {% call(value) options('q5.answer',5,[('yes',ui.yes),('no',ui.no),('cannot_tell',ui.cannot_tell)]) %}{% if value=='yes' %}<div class="q5-factor conditional-answer"><label>{{ ui.q5_factor }}{{ factor_select('q5.factor',5) }}</label>{{ help(ui.q5_factor,ui.q5_factor_help,ui.examples.q5_factor) }}<p class="how-line">{{ ui.how.q5_factor }}</p><label class="q5-other">{{ ui.other_detail }}<input name="q5.detail" maxlength="200" data-block="5"></label></div>{% endif %}{% endcall %}
+    </section>
+    <section class="task-step answer-result" data-step="review" data-stage="review" data-keyword="{{ words.review }}">
+      <h2 class="question-heading" tabindex="-1">{{ ui.review }}</h2><p>{{ ui.review_help }}</p><p class="review-final">{% if correcting %}{{ t('correction_review_final') }}{% else %}{{ 'Dopo il salvataggio la risposta resta registrata. Se poi ti accorgi di un errore, potrai correggerla da «Rivedi le coppie consegnate».' if lang=='it' else 'Once saved, your answer is recorded. If you later notice a mistake, you can correct it from “Review the pairs you submitted”.' }}{% endif %}</p>
+      <label for="rationale">{{ ui.note }}</label><textarea id="rationale" name="rationale" maxlength="1500" rows="3"></textarea><p class="note-help">{{ ui.note_help }}</p>
+      <div class="review-list"></div>
+      {% if correcting %}<p class="correction-cancel"><a href="{{ link('submitted') }}">← {{ t('correction_cancel') }}</a></p>{% endif %}
+    </section>
+    <div class="task-footer">
+    {% if cfg.PREVIEW_MODE and not correcting %}<button type="button" class="text-button comment-toggle" aria-controls="task-comment" aria-expanded="false" hidden>{{ t('leave_comment') }}</button>{% endif %}
+    {% if cfg.PREVIEW_MODE and not correcting %}<details class="comment-disclosure" id="task-comment"><summary>{{ t('leave_comment') }}</summary><label for="preview-comment">{{ t('feedback_prompt') }}</label><textarea id="preview-comment" name="comment" rows="3" maxlength="2000"></textarea><p class="note-help">{{ ui.note_saved }}</p></details>{% endif %}
+    <div class="task-actions"><button type="button" class="text-button decision-back">← {{ ui.back }}</button><button type="button" class="primary task-continue instrument-next">{{ ui.next }} →</button><button class="primary submit-answer">{{ t('correction_save') if correcting else ui.save }} →</button></div>
+    </div>
+    <p class="draft-caption">{{ t('correction_caption') if correcting else t('draft_short') }}</p><noscript><p role="alert">{{ ui.no_js }}</p></noscript>
+  </form>
+</div>
+{% endblock %}
+{% block feedback %}{% endblock %}
+{% block recovery %}{% endblock %}

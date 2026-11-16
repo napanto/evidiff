@@ -1,0 +1,2 @@
+<div class="code-box"><output class="personal-code"{% if display_code %} data-new-code="{{ display_code }}"{% endif %}>{{ display_code or '••••–'+person.code_hint }}</output><button type="button" class="secondary copy-code" data-copied="{{ t('copied') }}">{{ t('copy') }}</button></div>
+<div class="code-unavailable"{% if display_code %} hidden{% endif %}><p>{{ t('code_missing') }}</p><form method="post" action="{{ link('code') }}"><input type="hidden" name="_form" value="{{ token('code') }}"><button class="text-button">{{ t('new_code') }}</button></form></div>

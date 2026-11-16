@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="narrow">
+  <p class="eyebrow">{{ t('finish_short') }}</p><h1>{{ t('finish_title') }}</h1>
+  <p>{{ t('identity_help') }}</p>
+  {% set below = cfg.COMPENSATION_ENABLED and earn.count < cfg.MIN_PAYOUT_PAIRS and not site_stop %}
+  {% if site_stop and cfg.COMPENSATION_ENABLED and not cfg.PREVIEW_MODE %}<p class="notice">{{ t('site_stop_exception') }}</p>{% endif %}
+  {% if below %}<aside class="finish-warning"><p>{{ t('finish_below_warning', count=earn.count, minimum=cfg.MIN_PAYOUT_PAIRS) }}</p><div class="actions"><a class="secondary button" href="{{ link('work') }}">{{ t('continue') }}</a></div></aside>{% endif %}
+  <form method="post" action="{{ link('finish') }}" class="finish-form">
+    <input type="hidden" name="_form" value="{{ token('finish') }}">
+    {% if cfg.COMPENSATION_ENABLED %}<label for="first-name">{{ t('first_name') }}</label><input id="first-name" name="first_name" autocomplete="given-name" value="{{ request.form.get('first_name',identity.first_name if identity else '') }}" maxlength="200" required>
+    <label for="last-name">{{ t('last_name') }}</label><input id="last-name" name="last_name" autocomplete="family-name" value="{{ request.form.get('last_name',identity.last_name if identity else '') }}" maxlength="200" required>{% endif %}
+    <label for="programme">{{ t('programme') }}</label><select id="programme" name="programme" aria-describedby="programme-help" required><option value="">—</option>{% for key,p in programmes.items() %}<option value="{{ key }}"{% if request.form.get('programme',identity.programme if identity else '')==key %} selected{% endif %}>{{ p[lang] }}</option>{% endfor %}<option value="other"{% if request.form.get('programme',identity.programme if identity else '')=='other' %} selected{% endif %}>{{ t('other') }}</option></select><p class="fine" id="programme-help">{{ t('programme_help') }}</p>
+    <div class="other-programme" hidden><label for="other-programme">{{ t('other_programme') }}</label><input id="other-programme" name="other_programme" value="{{ request.form.get('other_programme',identity.other_programme if identity else '') }}" maxlength="200"><p class="fine">{{ t('programme_review') }}</p></div>
+    <label for="year">{{ t('year') }}</label><input id="year" name="year" value="{{ request.form.get('year',identity.year if identity else '') }}" placeholder="{{ t('year_placeholder') }}" maxlength="200" required>
+    <label class="check-line"><input type="checkbox" name="eligibility" value="yes" required{% if request.form.get('eligibility')=='yes' %} checked{% endif %}><span>{{ t('eligibility_declaration') }}</span></label>
+    {% if below %}<label class="check-line"><input type="checkbox" name="confirm_below" value="yes" required><span>{{ t('finish_below_confirm') }}</span></label>{% endif %}
+    <p class="fine">{{ t('voluntary') }} <a href="{{ link('privacy') }}">{{ t('privacy') }}</a></p>
+    <button class="primary">{{ t('finish_below_action' if below else 'finish_button') }} →</button>
+  </form>
+</section>
+{% endblock %}
